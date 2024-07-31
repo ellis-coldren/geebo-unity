@@ -8,8 +8,11 @@ public class RemovePlatforms : MonoBehaviour
     public GameObject player;
     public GameObject platformPrefab;
     public GameObject springPrefab;
+    public GameObject windowPrefab;
+    public GameObject window_lighton_Prefab;
     private GameObject myPlat;
     private GameObject backupPlat;
+    private GameObject windowPane;
 
     
     // Start is called before the first frame update
@@ -24,16 +27,25 @@ public class RemovePlatforms : MonoBehaviour
         
     }
     private void OnTriggerEnter2D(Collider2D collision){
-        float newPlat_x = player.transform.position.x + Random.Range(-12f, 12f); //needs to be clamped within screen
-        float newPlat_y = player.transform.position.y + (29 * Random.Range(0.9f, 1));
+        BoxCollider2D my_collider;
+        float newPlat_x = collision.transform.position.x; //needs to be clamped within screen
+        float newPlat_y = collision.transform.position.y + 62.5f;
         
-        if(Random.Range(1, 6) > 1){
-            myPlat = GameObject.Instantiate(platformPrefab, new Vector2(Mathf.Clamp(newPlat_x, -10f,20f), newPlat_y), Quaternion.identity);
-
-        } else{
-            myPlat = GameObject.Instantiate(springPrefab, new Vector2(Mathf.Clamp(newPlat_x, -10f,20f), newPlat_y), Quaternion.identity);
+        // Debug.Log(collision.gameObject.tag);
+        if(collision.gameObject.tag == "Platform") {
+            if(Random.Range(1, 6) > 1){
+                myPlat = GameObject.Instantiate(platformPrefab, new Vector2(newPlat_x, newPlat_y), Quaternion.identity);  
+            } else{
+                myPlat = GameObject.Instantiate(springPrefab, new Vector2(newPlat_x, newPlat_y), Quaternion.identity);
+            }
+            if(Random.Range(1, 6) > 1) {
+                windowPane = GameObject.Instantiate(windowPrefab, new Vector2(newPlat_x, newPlat_y + 5), Quaternion.identity);
+            } else {
+                windowPane = GameObject.Instantiate(window_lighton_Prefab, new Vector2(newPlat_x, newPlat_y + 5), Quaternion.identity);
+            }
         }
-        
-        Destroy(collision.gameObject);
+
+        my_collider = collision.gameObject.GetComponent<BoxCollider2D>();
+        my_collider.enabled = false;
     }
 }

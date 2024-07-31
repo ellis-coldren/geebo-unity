@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3719815332497773322}
   m_Layer: 0
   m_Name: Spring_Purple
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

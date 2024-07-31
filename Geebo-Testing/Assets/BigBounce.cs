@@ -19,7 +19,7 @@ public class BigBrunch : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.GetComponent<Rigidbody2D>().velocity.y <= 0){
-            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * 1200f);
+            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * 1300f);
         }
     }
 }
