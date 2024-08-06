@@ -25,7 +25,7 @@ public class Controller : MonoBehaviour
         Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "Window"){
             windowPane = GameObject.Instantiate(windowPrefab, new Vector2(collision.transform.position.x, collision.transform.position.y), Quaternion.identity);
-            //Iterate score!!
+            ScoreManager.instance.AddPoint();
         }
     }
 }
