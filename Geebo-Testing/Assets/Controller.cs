@@ -22,10 +22,14 @@ public class Controller : MonoBehaviour
         rb2d.velocity = new Vector2(moveInput*speed, rb2d.velocity.y);
     }
     private void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "Window"){
+
+            Debug.Log(collision.gameObject.tag);
+
             windowPane = GameObject.Instantiate(windowPrefab, new Vector2(collision.transform.position.x, collision.transform.position.y), Quaternion.identity);
             ScoreManager.instance.AddPoint();
+            
+            
         }
     }
 }
