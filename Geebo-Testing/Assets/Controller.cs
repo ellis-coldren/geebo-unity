@@ -44,7 +44,7 @@ public class Controller : MonoBehaviour
                 speed = Math.Min(speed*1.1f, 20f);
             }
             if (score % 10 == 0) {
-                plane = GameObject.Instantiate(planePrefab, new Vector2(30f, collision.transform.position.y + 30f), Quaternion.identity);
+                plane = GameObject.Instantiate(planePrefab, new Vector2(35f, collision.transform.position.y + 35f), Quaternion.identity);
                 smoke = GameObject.Instantiate(smokePrefab, new Vector2(55f, collision.transform.position.y + 70f), Quaternion.identity);
             }
             
