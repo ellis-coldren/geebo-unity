@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class Bounce : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public GameObject geebo_player;
+    private Controller controller_script;
+    private void Start(){
+        controller_script = geebo_player.GetComponent<Controller>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.GetComponent<Rigidbody2D>().velocity.y <= 0){
-            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * 800f);
+        Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
+        if (rb.velocity.y <= 0)
+        {
+            Debug.Log("Collision Detected with force: " + controller_script.geebo_force);
+            rb.AddForce(Vector3.up * controller_script.geebo_force);
+            Debug.Log("Collision Detected");
+            rb.gravityScale = controller_script.geebo_gravity;
         }
     }
 }
